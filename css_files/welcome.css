@@ -19,29 +19,8 @@
 #Welcome-Section-Buttons {
     text-align: center;
     margin: 0;
-    /*margin: 0vw 20vw 0vw 20vw;*/
-    /*padding-top: 10px;*/
-    /*background-color: white;*/
-    /*background-color: black;*/
-    /*padding-top: 0px;*/
-    /*height: 5vh;*/
-    /*line-height: 60px;*/
-    /*font-size: 10em;*/
-    /*font-weight: 700;*/
 }
 
-/*#Welcome-Section-Buttons > #Welcome-ul{*/
-/*    margin: 0vw 0vw 0vw 0vw;*/
-/*    !*padding-top: 10px;*!*/
-/*    !*background-color: white;*!*/
-/*    background-color: black;*/
-/*    padding-top: 0px;*/
-/*    height: 0px;*/
-/*    !*line-height: 60px;*!*/
-/*    !*font-size: 10em;*!*/
-/*    !*font-weight: 700;*!*/
-/*    text-align: center;*/
-/*}*/
 
 #Welcome-Section-Buttons > #Welcome-ul > li{
     height: 0px;
@@ -58,5 +37,4 @@
     cursor: pointer;
 }
 
-/*#welcome-section-loggedIn > #Welcome-Section >*/
 

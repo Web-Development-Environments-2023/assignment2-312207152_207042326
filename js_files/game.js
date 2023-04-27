@@ -11,7 +11,6 @@ var playerHistory = [];
 var gameCounter = 1;
 var playerColor = 'player12.png'; //defualt player
 
-
 $(document).ready(function() {
 	$("#register-section").hide();
 	$("#login-section").hide();
@@ -156,8 +155,8 @@ $("#blackPlayer").click(function(){
   $(this).addClass('clicked');
 });
 
-$("#redPlayer").click(function(){
-  playerColor = 'player1.png';
+$("#bluePlayer").click(function(){
+  playerColor = 'player_blue.png';
   $('.color-btn').removeClass('clicked');
   $(this).addClass('clicked');
 });
@@ -484,7 +483,7 @@ function startGame(){
   var playerPoints=0
   document.getElementById("points-display").textContent = "Player Points: " + playerPoints;
   document.getElementById("pointsFails-display").textContent = "Number Of Fails: " + playerPoints;
-  // document.getElementById("time-left").innerHTML = "Time Left: ";
+  document.getElementById("time-left").innerHTML = "Time Left: ";
   var ranEnemyX=0;
   var ranEnemyY=0;
   var testo=1
@@ -636,19 +635,19 @@ function createEnemies() {
     }
     if (row ==1)
     {
-      enemyImageChanged.src='enemy11.png';
+      enemyImageChanged.src='e23.png';
     }
     if (row ==2)
     {
-      enemyImageChanged.src='enemy2.png';
+      enemyImageChanged.src='e3.png';
     }
     if (row ==3)
     {
-      enemyImageChanged.src='enemy8.png';
+      enemyImageChanged.src='e44.png';
     }
     if (row ==4)
     {
-      enemyImageChanged.src='enemy13.png';
+      enemyImageChanged.src='e55.png';
     }
     enemies.push({
       x:(col * enemyWidth + enemyWidth / 2),

@@ -13,7 +13,7 @@
     <title>SpaceShips War</title>
 
   </head>
-  <body style="background-color: black;  background-image:url(media/s22.jpg);">
+  <body style="background-color: black;  background-image:url(media/black_space.jpg);">
     <header class="header-style">
         <center>
         <h1 style="margin: 0; letter-spacing: 2px; text-transform: uppercase; color: rgba(111, 14, 201, 0.884); font-family: cursive; font-size: 80px;">🚀Spaceship War🚀</h1>
@@ -85,15 +85,10 @@
         		</div>
 				<div id="submitRegistrationButtonD">
 					<button type="submit" class="btn" data-text="color" >SUBMIT</button>
-          <!-- <button type="submit" class="btn" data-text="color" onclick="return registrationUser()">SUBMIT</button> -->
 					<button type="reset" id = "reset-btn" class="btn" data-text="color">RESET</button>
-          <br>
-          <br>
-          <br>
-          <br>
 				</div>
 			</form>
-		</section>
+	</section>
     
     <section id="login-section">
 		<form id="login-section-form">
@@ -144,7 +139,7 @@
 					<div class="rangeSet">
 						<div class="rangeW">
 							<div class="range-val" id="range-value-time"></div>
-							<input id="rangeTime" type="range" min="30" max="180" value="30" step="1"/>
+							<input id="rangeTime" type="range" min="120" max="180" value="120" step="1"/>
 						</div>
 					</div>
 				</div>
@@ -156,8 +151,8 @@
 						<button id="blackPlayer" class="color-btn" data-text="color">
 							<img src="player12.png" alt="black Picture 1">
 						</button>
-						<button id="redPlayer" class="color-btn" data-text="color">
-							<img src="player1.png" alt="red Picture 1">
+						<button id="bluePlayer" class="color-btn" data-text="color">
+							<img src="player_blue.png" alt="blue Picture 1">
 						</button>
 					</div>
 				</div>
@@ -177,7 +172,6 @@
 		<div id="points-display" style="font-size: 30px;"></div>
 		<div id="pointsFails-display" style="font-size: 30px;"></div>
 		<div id="time-left" style="font-size: 30px;"></div>
-
 		<button id="restart-button">Restart Game</button>
 	</section>
 	
@@ -234,6 +228,10 @@
 					<li>
 						<p>  3. Choosing the right way to implements the shooting on the player and create the speed intervals.</p>
 					</li>
+					<br>
+					<li>
+						<p> We add an options to choose between two players, and also time to play (min time is 2 minutes).</p>
+					</li>
 
 				</ol>
 				<br/>
@@ -264,13 +262,10 @@
 	</script>
 
 
-
-    <footer style="font-family: cursive; text-align: center;">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+	<div class="wrapper">
+		<!-- Content here -->
+	</div>
+    <footer style="font-family: cursive; text-align: center;">   
         <span class="contact">Nofar Baron 
           <a href = "mailto:nofarbaron28@gmail.com?subject = Feedback&body = Message">
             nofarbaron28@gmail.com
