@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js_files/jquery.validate.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css_files/style.css">
+    <link rel="stylesheet" type="text/css" href="css_files/welcome.css">
+    <link rel="stylesheet" type="text/css" href="css_files/register.css">
+    <link rel="stylesheet" type="text/css" href="css_files/login.css">
+    <link rel="stylesheet" type="text/css" href="css_files/preference.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>SpaceShips War</title>
+
+  </head>
+  <body style="background-color: black;  background-image:url(media/s22.jpg);">
+    <header class="header-style">
+        <center>
+        <h1 style="margin: 0; letter-spacing: 2px; text-transform: uppercase; color: rgba(111, 14, 201, 0.884); font-family: cursive; font-size: 80px;">🚀Spaceship War🚀</h1>
+        <p style="font-family: cursive;">Nofar Baron 207042326 && Shahar Asayag 312207152</p>
+      </center>
+    </header>
+
+	<div id="Menu-container">
+		<ul id="menu">
+			<li>
+				<button id="home-menu-btn" class="btn" data-text="color">WELCOME</button>
+			</li>
+			<li>
+				<button id="register-menu-btn" class="btn" data-text="color">REGISTER</button>
+			</li>
+			<li>
+				<button id="play-menu-btn" class="btn" data-text="color">NEW GAME</button>
+			</li>
+			<li>
+				<button id="login-menu-btn" class="btn" data-text="color">LOGIN</button>
+			</li>
+			<li>
+				<button id="logout-menu-btn" class="btn" data-text="color" onclick="return logout()">LOGOUT</button>
+			</li>
+			<li>
+				<button id="about-menu-btn" class="btn" data-text="color" hrel="#about" onclick="openAbout()">ABOUT</button>
+			</li>
+		</ul>
+	</div>
+
+	<section class="welcome-section" id="welcome-section-notLoggedIn">
+		<!-- <div id="Welcome-img">
+			<img id="welcome-gif" src="media/images/welcome.gif"/>
+		</div> -->
+		<div id="Welcome-Section-Buttons">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<ul id="Welcome-ul">
+				<li>
+					<button id="welcome-login-btn" type="button" class="btn" data-text="color">LOGIN</button>
+				</li>
+				<li>
+					<button id="welcome-registration-btn" type="button" class="btn" data-text="color">SIGN UP</button>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+    <section id="register-section">
+			<form id="registration-section-form" class="app-forms">
+				<div id="register-form-title">
+					<h2>Sign Up</h2>
+				</div>
+				<div id="register-fill-in-div">
+					<input class="inputRequest" type="text" placeholder="User Name" id="registerFormUserName" name="registerFormUserName" required/>
+					<input class="inputRequest" type="password" placeholder="Password" id="registerFormPassword" name="registerFormPassword" required/>
+					<input class="inputRequest" type="password" placeholder="Confirm Password" id="registerFormConfirmPassword" name="registerFormConfirmPassword" required/>
+					<input class="inputRequest" type="text" placeholder="First Name" id="registerFormFirstName" name="registerFormFirstName" required/>
+					<input class="inputRequest" type="text" placeholder="Last Name" id="registerFormLastName" name="registerFormLastName" required/>
+					<input class="inputRequest" type="email" placeholder="Email" id="registerFormEmail" name="registerFormEmail" required/>
+					<input class="inputRequest" type="date" placeholder="Birth Date" id="registerFormBirthDate" name="registerFormBirthDate" value="1940-01-01" min="1900-01-01" max="2022-01-01" required/>
+        		</div>
+				<div id="submitRegistrationButtonD">
+					<button type="submit" class="btn" data-text="color" >SUBMIT</button>
+          <!-- <button type="submit" class="btn" data-text="color" onclick="return registrationUser()">SUBMIT</button> -->
+					<button type="reset" id = "reset-btn" class="btn" data-text="color">RESET</button>
+          <br>
+          <br>
+          <br>
+          <br>
+				</div>
+			</form>
+		</section>
+    
+    <section id="login-section">
+		<form id="login-section-form">
+			<div id="login-form-title">
+				<h2>Log In</h2>
+			</div>
+			<div id="login-fill-in-div">
+				<input class="inputRequest" type="text" placeholder="User Name" id="loginFormUserName" required/>
+				<input class="inputRequest" type="password" placeholder="Password" id="loginFormPassword" required/>
+			</div>
+			<div id="submitLogInButtonD">
+				<button type="submit" class="btn" data-text="color" onclick="return logIn()">LOGIN</button>
+				<button type="reset" class="btn" data-text="color">RESET</button>
+			</div>
+		</form>
+	</section>
+
+
+    <section id="preference-section">
+		<form id="preference-form">
+			<div id="preference-form-title">
+				<h2>
+					Preferences
+				</h2>
+				<h3>
+					Choose your preferences before start playing
+				</h3>
+			</div>
+			<div id="preference-form-div">
+				<div class="preference-form">
+					<h3>
+						<br>
+						Key Settings:
+					</h3>
+					<div id="preference-keys">
+						<p>
+							Press any key to choose the desired key to shoot with and then Enter.
+						</p>
+						<div>
+							<input type="text" id="key-board-input" onkeydown="setShootKey(event)" required/>
+						</div>
+					</div>
+				</div>
+				<div class="preference-form">
+					<h3>
+						Time:
+					</h3>
+					<div class="rangeSet">
+						<div class="rangeW">
+							<div class="range-val" id="range-value-time"></div>
+							<input id="rangeTime" type="range" min="30" max="180" value="30" step="1"/>
+						</div>
+					</div>
+				</div>
+				<div class="preference-form">
+					<h3>
+						Color:
+					</h3>
+					<div >
+						<button id="blackPlayer" class="color-btn" data-text="color">
+							<img src="player12.png" alt="black Picture 1">
+						</button>
+						<button id="redPlayer" class="color-btn" data-text="color">
+							<img src="player1.png" alt="red Picture 1">
+						</button>
+					</div>
+				</div>
+				<div class="submitButtonD">
+					<button type="submit" class="btn" value="SET" onclick="return setUserPreferences()">Play</button>
+				</div>
+			</div>
+		</form>
+	</section>
+
+
+	<section id="play-section">
+		<audio loop="true" id="startMusic">
+			<source src="audio/space.mp3" type="audio/mpeg">
+		</audio>
+		<canvas id="game-canvas"></canvas>
+		<div id="points-display" style="font-size: 30px;"></div>
+		<div id="pointsFails-display" style="font-size: 30px;"></div>
+		<div id="time-left" style="font-size: 30px;"></div>
+
+		<button id="restart-button">Restart Game</button>
+	</section>
+	
+	
+	<section id="player-history-section">
+		<h2 id="player-name"></h2>		
+		<table id="myTable">
+			<tr class="header-row">
+				<th>Game Number</th>
+				<th>Points</th>
+			</tr>
+		</table>
+	</section>
+
+
+
+	<div id="about" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeAbout()">&times;</span>
+			<div id="about-header">
+				<h1>About</h1>
+			</div>
+			<div>
+				<h3>Made by:</h3>
+				<ul>
+					<li>
+						<h3>
+							Nofar Baron - 207042326
+						</h3>
+					</li>
+					<li>
+						<h3>
+							Shahar Asayag - 312207152
+						</h3>
+					</li>
+				</ul>
+				<ol class="about-list">
+					<li>
+						<p>JQuery Validation - We used validate the login and sing uo forms. We used validation for letting the user know what are the valid details.</p>
+					</li>
+					<li>
+						<p>We created our template. We used divs and modal to create the switch screens.</p>
+					</li>
+				
+					<li>
+						<p>The challenges we have faced are:</h4>
+					</li>
+					<li>
+						<p>  1. Switching between screens and synchronizing them.</p>
+					</li>
+					<li>
+						<p>  2. Validate the sing up form "on place" and inform the user when he is wrong.</p>
+					</li>
+					<li>
+						<p>  3. Choosing the right way to implements the shooting on the player and create the speed intervals.</p>
+					</li>
+
+				</ol>
+				<br/>
+				<h3>HAVE FUN!!</h3>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function openAbout(){
+			document.getElementById("about").style.display = "block";
+		}
+		function closeAbout(){
+			document.getElementById("about").style.display = "none";
+		}
+
+		window.onclick = function (event){
+			if (event.target == document.getElementById("about")){
+				document.getElementById("about").style.display = "none";
+			}
+		}
+
+		document.addEventListener('keyup', function (event){
+			if (event.keyCode == 27){
+				document.getElementById("about").style.display = "none";
+			}
+		})
+	</script>
+
+
+
+    <footer style="font-family: cursive; text-align: center;">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+        <span class="contact">Nofar Baron 
+          <a href = "mailto:nofarbaron28@gmail.com?subject = Feedback&body = Message">
+            nofarbaron28@gmail.com
+          </a>
+          <br>
+            Shahar Asayag  <a href = "mailto:shahar@gmail.com?subject = Feedback&body = Message">
+			asasha@post.bgu.ac.il
+            </a>
+        </span>
+    </footer>
+
+	<script type="text/javascript" src="js_files/game.js"></script>
+
+  </body>
+</html>

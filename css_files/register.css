@@ -1,0 +1,31 @@
+#register-section{
+    width: 40vw;
+    height: 90vh;
+    justify-items: center;
+    flex-direction: column;
+    margin: 0 55% 0 25%;
+}
+
+#register-section > #registration-section-form > #register-form-title {
+    align-items: center;
+    padding-top: 5vh;
+    margin: 0;
+}
+
+#register-section > #registration-section-form > #register-form-title > h2 {
+    padding-left: 19vw;
+}
+
+#register-section > #registration-section-form > #register-fill-in-div {
+    display: grid;
+    padding-left: 12vw;
+    grid-column-gap: initial;
+    align-content: space-around;
+}
+
+#register-section > #registration-section-form > #submitRegistrationButtonD {
+    padding-left: 10vw;
+    padding-top: 5vh;
+    flex-direction: row;
+    width: 60vw;
+}

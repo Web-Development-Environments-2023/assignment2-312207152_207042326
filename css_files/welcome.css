@@ -1,0 +1,62 @@
+#welcome-section-notLoggedIn{
+    height: 39vh;
+}
+
+/* 
+ #Welcome-img{
+    text-align: center;
+    margin: 0vh 10vw 0vh 0vw;
+    padding-left: 10vw;
+} */
+
+/* #Welcome-img > #welcome-gif{
+    height: 38%;
+    width: 50%;
+    justify-content: center;
+    padding: 2vh 0vw;
+} */
+
+#Welcome-Section-Buttons {
+    text-align: center;
+    margin: 0;
+    /*margin: 0vw 20vw 0vw 20vw;*/
+    /*padding-top: 10px;*/
+    /*background-color: white;*/
+    /*background-color: black;*/
+    /*padding-top: 0px;*/
+    /*height: 5vh;*/
+    /*line-height: 60px;*/
+    /*font-size: 10em;*/
+    /*font-weight: 700;*/
+}
+
+/*#Welcome-Section-Buttons > #Welcome-ul{*/
+/*    margin: 0vw 0vw 0vw 0vw;*/
+/*    !*padding-top: 10px;*!*/
+/*    !*background-color: white;*!*/
+/*    background-color: black;*/
+/*    padding-top: 0px;*/
+/*    height: 0px;*/
+/*    !*line-height: 60px;*!*/
+/*    !*font-size: 10em;*!*/
+/*    !*font-weight: 700;*!*/
+/*    text-align: center;*/
+/*}*/
+
+#Welcome-Section-Buttons > #Welcome-ul > li{
+    height: 0px;
+    display: inline-block;
+    /* display: inline-block; */
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    padding-top: 0px;
+    margin: 0 1vw 0 1vw;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+/*#welcome-section-loggedIn > #Welcome-Section >*/
+

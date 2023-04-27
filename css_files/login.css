@@ -1,0 +1,31 @@
+#login-section{
+    width: 40vw;
+    height: 40vh;
+    justify-items: center;
+    flex-direction: column;
+    margin: 0 55% 0 25%;
+}
+
+#login-section > #login-section-form > #login-form-title {
+    align-items: center;
+    padding-top: 5vh;
+    margin: 0;
+}
+
+#login-section > #login-section-form > #login-form-title > h2 {
+    padding-left: 20vw;
+}
+
+#login-section > #login-section-form > #login-fill-in-div {
+    display: grid;
+    padding-left: 12vw;
+    grid-column-gap: initial;
+    align-content: space-around;
+}
+
+#login-section > #login-section-form > #submitLogInButtonD {
+    padding-left: 10vw;
+    padding-top: 5vh;
+    flex-direction: row;
+    width: 60vw;
+}
