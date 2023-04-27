@@ -253,9 +253,9 @@ h2 {
 } 
 
 footer {
-  height: 100px; 
+  height: 6vw; 
   position: relative;
   /* set the footer to the bottom of the page */
-  bottom: 200;
+  bottom: 100;
   width: 100%;
 }
