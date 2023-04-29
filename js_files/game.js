@@ -10,6 +10,9 @@ var audio = document.getElementById("startMusic");
 var playerHistory = [];
 var gameCounter = 1;
 var playerColor = 'player12.png'; //defualt player
+var intervalId;
+var intervalId2;
+var intervalId3;
 
 $(document).ready(function() {
 	$("#register-section").hide();
@@ -392,7 +395,29 @@ function logout(){
 		audio.pause();
     console.log("pauseeeee audiooooooooooooooo");
 	}
-  breakGame();
+  // breakGame();
+  rocketObj=null
+  rocketObj2=null
+  enemies=null;
+  
+
+failsCoount=0
+rocketObj=null
+rocketObj2=null
+
+clearInterval(intervalId)
+
+
+
+  // console.log(intervalId2)
+clearInterval(intervalId2)
+
+
+
+clearInterval(intervalId3)
+
+clearTimeout(timer)
+
   setUserTable();
   setLogOut();
   ResetPreferences();
@@ -464,16 +489,20 @@ $(document).keydown(function(e) {
 });
 /********************************************************************************************************* */
 var keys={};
+
 const restartButton = document.querySelector('#restart-button');
 var intervalId;
+// var intervalId2;
 
-restartButton.addEventListener('click', function() {
-  startGame();
-
-});
+var failsCoount;
+var seconds;
+var rocketObj ;
+var rocketObj2;
 function startGame(){
+  let ourGameLoop=0;
+  let stopGame=false;
   keys={};
-  var failsCoount=0
+  failsCoount=0;
   var cahngeX=0
   var rocketStartingPosY=0
   var rocketStartingPosX=0
@@ -490,13 +519,32 @@ function startGame(){
   counterOfInt=1
   var timeRemain=true
   debug=0
+  // let intervalId3;
+  seconds=limitTime
   var myVar = 2; // The variable to be updated
 
   function updateTimer(){
+    seconds--;
     // var seconds = Math.floor((limitTime % (60 * 1000)) / 1000);
     document.getElementById("time-left").innerHTML = "Time Left: " + seconds;
   }
-  setInterval(updateTimer, 1000);
+
+  function resetAndBreak(x){
+    if(x==1){
+      var tupleRes=[gameCounter,playerPoints]
+      playerHistory.push(tupleRes);
+      gameCounter++
+    }  
+  clearInterval(intervalId)
+  clearInterval(intervalId2)
+  clearTimeout(timer)
+  clearTimeout(timer2)
+  rocketObj=null
+  rocketObj2=null
+  enemies=null
+
+  }
+  intervalId3= setInterval(updateTimer, 1000);
 
 
   function myTimer (){
@@ -509,25 +557,45 @@ function startGame(){
         var tupleRes=[gameCounter,playerPoints]
         playerHistory.push(tupleRes);
         gameCounter++
-        console.log("Playr"+playerHistory)
+        // console.log("Playr"+playerHistory)
         // playerHistory.push(dic);
         // console.log("Results are" +playerHistory);
         rocketObj=null
-        // playerPoints=null
-        enemies=null;
+      rocketObj2=null
+      enemies=null;
+      
+    seconds=null
+    failsCoount=0
+    rocketObj=null
+    rocketObj2=null
+    clearInterval(intervalId)
+    clearInterval(intervalId2)
+    clearTimeout(timer)
+    clearInterval(intervalId3)
         alert("You can do better!");
-        startGame();
+        // startGame();
       }
 
       if(playerPoints>=100){
         var tupleRes=[gameCounter,playerPoints]
         playerHistory.push(tupleRes);
         gameCounter++
+        
         rocketObj=null
-        // playerPoints=null
+        rocketObj2=null
         enemies=null;
+        
+      seconds=null
+      failsCoount=0
+      rocketObj=null
+      rocketObj2=null
+      clearInterval(intervalId)
+      clearInterval(intervalId2)
+      clearTimeout(timer)
+      clearInterval(intervalId3)
+        
         alert("You Win!");
-        startGame();
+        // startGame();
       }
     }, limitTime*1000);
   }
@@ -552,6 +620,33 @@ intervalId = setInterval(() => {
   // Update the variable
   enemySpeed+=0.5;
 }, 5000); // Run every 5 seconds (5000 milliseconds)
+ intervalId2 = setInterval(() => {
+  // Update the variable
+  if(enemies!=null){
+  if(enemies.length==0)
+  {
+    rocketObj=null
+    rocketObj2=null
+    enemies=null;
+  
+  seconds=null
+  failsCoount=0
+  rocketObj=null
+  rocketObj2=null
+  clearInterval(intervalId)
+  clearInterval(intervalId2)
+  clearTimeout(timer)
+  clearInterval(intervalId3)
+alert("Champion!");
+// startGame();
+
+
+
+}
+  }
+
+
+}, 1000);
 
 // To stop the interval after a certain amount of time (e.g. 30 seconds)
 setTimeout(() => {
@@ -662,14 +757,18 @@ function createEnemies() {
 }
 
 var smallCo=0
-let rocketObj = new rocketo();
-var rocketObj2 = new rocketo();
+var smallCo2=0
+rocketObj = new rocketo();
+rocketObj2 = new rocketo();
 
 
 function shootRocket(rocketob){
   // let rocketObj = new rocketo();
   // smallCo=0;
+  if(enemies!=null)
+  {
 var randomNumber1 = Math.floor(Math.random() * enemies.length);  
+}
 enemies.forEach((enemy) => {
   
   if(smallCo==randomNumber1)
@@ -690,6 +789,39 @@ enemies.forEach((enemy) => {
   
 });
 
+
+
+ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
+rocketob.y+=0.5 
+    
+}
+
+function shootRocket2(rocketob){
+  // let rocketObj = new rocketo();
+  // smallCo=0;
+var randomNumber2 = Math.floor(Math.random() * enemies.length);  
+enemies.forEach((enemy) => {
+  
+  if(smallCo2==randomNumber2)
+  {
+    // console.log("enemies Leng is"+ enemies.length);
+    // console.log("The random number is"+ randomNumber1);
+    if(rocketob!=null)
+    {
+    rocketob.x=enemy.x
+    rocketob.y=enemy.y
+  }
+    // return 0;
+    
+
+  }
+  smallCo2++;
+  
+  
+});
+
+
+
 ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
 rocketob.y+=0.5 
     
@@ -703,6 +835,7 @@ var countermy=0
 
 function gameLoop() {
   
+     
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -716,8 +849,12 @@ function gameLoop() {
       ctx.drawImage(enemy.image, enemy.x  , enemy.y , enemy.width, enemy.height);
     });
   }
-  if(rocketObj!=null){
+  if(rocketObj!=null && ourGameLoop==0){
     shootRocket(rocketObj);
+  }
+  if(rocketObj!=null&& ourGameLoop==0){
+  var timer2= setTimeout( shootRocket2(rocketObj2), 2000);
+   
   }
   // shootRocket(rocketObj2);
   
@@ -823,11 +960,12 @@ function gameLoop() {
       // console.log("Shooted number 1");
       // shootRocket(rocketObj)
     }
-
+  }
+  if(rocketObj2!=null){
     if(rocketObj2.y==canvas.height )
     
     {
-      smallCo=0; 
+      smallCo2=0; 
     }
   }
 
@@ -886,6 +1024,42 @@ if (rocketObj!=null){
     document.getElementById("pointsFails-display").textContent = "Number Of Fails: " + failsCoount;
   }
 }
+
+
+//---------------------------------------------
+
+
+
+if (rocketObj2!=null){
+  if (
+    ( (rocketObj2.x - rocketObj2.width < player.x + player.width / 2 &&
+    rocketObj2.x  > player.x - player.width / 2 &&
+    rocketObj2.y > player.y - player.height / 5 &&
+    rocketObj2.y + (rocketObj2.height/2) > player.y - player.height / 2)))
+    {
+    console.log("The fire cachted the player");
+    smallCo2=0;
+    // console.log("this is smallco:"+smallCo)
+    // console.log(rocketObj.x);
+    // console.log(player.x);
+    
+    player.x=0
+    // rocketObj.x=0
+    failsCoount++;
+    // var rocketObj = new rocketo();
+    if(failsCoount>2){
+        clearTimeout(timer);
+        failsCoount=0;
+        // alert("you can do better");
+        endGame(1);
+    }
+
+    document.getElementById("pointsFails-display").textContent = "Number Of Fails: " + failsCoount;
+  }
+}
+
+
+//-------------------------------------------
   requestAnimationFrame(gameLoop);
 }
 
@@ -930,15 +1104,25 @@ if (rocketObj!=null){
       // playerHistory.push(playerPoints);
       console.log("Results are" + playerHistory)
       rocketObj=null
+      rocketObj2=null
       enemies=null;
       
-      startGame();
+    seconds=null
+    failsCoount=0
+    rocketObj=null
+    rocketObj2=null
+    clearInterval(intervalId)
+    clearInterval(intervalId2)
+    clearTimeout(timer)
+    clearInterval(intervalId3)
+    alert("You Lost!");
+      // startGame();
       
       // clearTimeout(timer);
     
-      alert("You Lost!");
-      clearTimeout(timer);
-        startGame();
+     
+      // clearTimeout(timer);
+        // startGame();
     }
     
     if(x==2){
@@ -948,10 +1132,17 @@ if (rocketObj!=null){
         
       // playerHistory.push(playerPoints);
       console.log("Results are" +playerHistory)
-      rocketObj=null
-      enemies=null;
+      enemies=null
+    seconds=null
+    failsCoount=0
+    rocketObj=null
+    rocketObj2=null
+    clearInterval(intervalId)
+    clearInterval(intervalId2)
+    clearTimeout(timer)
+    clearInterval(intervalId3)
       alert("You Win!");
-      startGame();
+      // startGame();
     
       if(x==3){
         
@@ -968,15 +1159,41 @@ if (rocketObj!=null){
         // startGame();
     }
   }
+  function breakGame(){
+    rocketObj=null
+    rocketObj2=null
+    enemies=null;
+    failsCoount=0
+    seconds=null
+    clearTimeout(timer);
+    clearInterval(intervalId);
+    clearInterval(intervalId2);
+    stopGame=true;
+    console.log("Game is broken"); 
+    
+  }
+  restartButton.addEventListener('click', function() {
+  // ourGameLoop=1;
+    enemies=null
+    seconds=null
+    failsCoount=null
+  
+    rocketObj=null
+    
+    rocketObj2=null
+  
+    clearInterval(intervalId)
+    clearInterval(intervalId2)
+    clearTimeout(timer)
+    clearInterval(intervalId3)
+    // startGame().breakGame();
+    startGame();
+  
+  });
 }
 
-function breakGame(){
-  rocketObj=null
-  enemies=null;
-  clearTimeout(timer);
-  clearInterval(intervalId);
-  console.log("Game is broken"); 
-}
+
+
 
 
 
