@@ -13,6 +13,7 @@ var playerColor = 'player12.png'; //defualt player
 var intervalId;
 var intervalId2;
 var intervalId3;
+var prefIsSet = false;
 
 $(document).ready(function() {
 	$("#register-section").hide();
@@ -25,15 +26,18 @@ $(document).ready(function() {
   $("#player-history-section").hide();
 
 
-  $("#home-menu-btn").click(function(){
-    // ClearAllIntervals();
+  $("#home-menu-btn").click(function(event){
     if (audio != null){
       audio.pause();
     }
-    // if (loggedInUser != null){
-    //   $("#welcome-login-btn").hide();
-    //   $("#welcome-registration-btn").hide();
-    // }
+    if (loggedInUser != null){
+      $("#welcome-login-btn").hide();
+      $("#welcome-registration-btn").hide();
+    }
+    if ($("#preference-section").is(":visible")) {
+      event.preventDefault();
+      return; 
+    }
     $("#player-history-section").hide();
     $("#welcome-section-notLoggedIn").show();
     $("#play-section").hide();
@@ -44,7 +48,6 @@ $(document).ready(function() {
   });
 
   $("#register-menu-btn").click(function(){
-		// ClearAllIntervals();
 		if (audio != null){
 			audio.pause();
 		}
@@ -58,7 +61,6 @@ $(document).ready(function() {
 	});
 
 	$("#login-menu-btn").click(function(){
-		// ClearAllIntervals();
 		if (audio != null){
 			audio.pause();
 		}
@@ -72,7 +74,6 @@ $(document).ready(function() {
 	});
 
 	$("#welcome-login-btn").click(function(){
-		// ClearAllIntervals();
 		if (audio != null){
 			audio.pause();
 		}
@@ -120,7 +121,7 @@ $(document).ready(function() {
 
 //**************** SET PREFERENCE *********************/
 function setShootKey(event){
-	let key_shot = document.getElementById("key-board-input").value;
+	// let key_shot = document.getElementById("key-board-input").value;
   shoot_key = event.keyCode;
   if (event.keyCode=='32'){
     alert("The choosen key is SPACE");
@@ -130,6 +131,7 @@ function setShootKey(event){
   }
 }
 
+//set time
 $(document).ready(function() {
 	const rangeTime = document.getElementById('rangeTime');
   console.log("range time is " +rangeTime.value) 
@@ -143,26 +145,27 @@ $(document).ready(function() {
 	};
 	document.addEventListener("ContactLoaded", setValueTime);
 	rangeTime.addEventListener('input', setValueTime);
-
 	setValueTime();
 });
+
 
 $('.color-btn').click(function() {
   $('.color-btn').removeClass('clicked');
   $(this).addClass('clicked');
 })
 
-$("#blackPlayer").click(function(){
+function setBlackPlayer(event){
+  event.preventDefault()
   playerColor = 'player12.png';
-  $('.color-btn').removeClass('clicked');
-  $(this).addClass('clicked');
+  console.log(" BLACK PLAYER IS CHOSSEN");
+}
+
+$("#bluePlayer").click(function(event){
+  event.preventDefault()
+  playerColor = 'player_blue.png';
+  console.log(" BLUE PLAYER IS CHOSSEN");
 });
 
-$("#bluePlayer").click(function(){
-  playerColor = 'player_blue.png';
-  $('.color-btn').removeClass('clicked');
-  $(this).addClass('clicked');
-});
 
 function setUserPreferences(){
 	limitTime = parseInt($("#rangeTime").val(), 10);
@@ -184,6 +187,7 @@ function setUserPreferences(){
 	$("#play-menu-btn").show();
 	$("#logout-menu-btn").show();
   $("#preference-section").hide();
+  prefIsSet = true;
   startGame();
 	return false;
 }
@@ -395,32 +399,26 @@ function logout(){
 		audio.pause();
     console.log("pauseeeee audiooooooooooooooo");
 	}
-  // breakGame();
+  if (prefIsSet){
+    breakGame();
+    setUserTable();
+  }
+  setLogOut();
+  ResetPreferences();
+}
+
+function breakGame(){
   rocketObj=null
   rocketObj2=null
   enemies=null;
-  
-
-failsCoount=0
-rocketObj=null
-rocketObj2=null
-
-clearInterval(intervalId)
-
-
-
-  // console.log(intervalId2)
-clearInterval(intervalId2)
-
-
-
-clearInterval(intervalId3)
-
-clearTimeout(timer)
-
-  setUserTable();
-  setLogOut();
-  ResetPreferences();
+  failsCoount=0
+  rocketObj=null
+  rocketObj2=null
+  clearInterval(intervalId)
+    // console.log(intervalId2)
+  clearInterval(intervalId2)
+  clearInterval(intervalId3)
+  clearTimeout(timer)
 }
 
 function setLogOut(){
@@ -437,7 +435,6 @@ function setLogOut(){
 	$("#welcome-registration-btn").show();
   $("#player-history-section").show();
   $("#home-menu-btn").show();
-	// ResetPreferences();
 }
 
 
@@ -450,6 +447,7 @@ function ResetPreferences(){
   loggedInUser = null;
   gameCounter = 1;
   playerHistory = [];
+  prefIsSet = false;
 }
 
 //when the game end show the player his score table 
@@ -489,7 +487,6 @@ $(document).keydown(function(e) {
 });
 /********************************************************************************************************* */
 var keys={};
-
 const restartButton = document.querySelector('#restart-button');
 var intervalId;
 // var intervalId2;
