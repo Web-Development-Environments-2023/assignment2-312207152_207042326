@@ -26,6 +26,14 @@ $(document).ready(function() {
   $("#player-history-section").hide();
 
   $("#home-menu-btn").click(function(event){
+    if ($("#preference-section").is(":visible")) {
+      event.preventDefault();
+      return; 
+    }
+    if ($("#play-section").is(":visible")) {
+      event.preventDefault();
+      return; 
+    }
     if (audio != null){
       audio.pause();
     }
@@ -33,10 +41,7 @@ $(document).ready(function() {
       $("#welcome-login-btn").hide();
       $("#welcome-registration-btn").hide();
     }
-    if ($("#preference-section").is(":visible")) {
-      event.preventDefault();
-      return; 
-    }
+   
     $("#player-history-section").hide();
     $("#welcome-section-notLoggedIn").show();
     $("#play-section").hide();
@@ -179,7 +184,7 @@ function setUserPreferences(){
   $("#welcome-section").hide();
 	$("#play-section").show();
 	$("#preference-section").hide();
-  $("#home-menu-btn").hide();
+  $("#home-menu-btn").show();
   $("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
