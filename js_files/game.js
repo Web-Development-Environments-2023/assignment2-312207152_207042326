@@ -19,12 +19,11 @@ $(document).ready(function() {
 	$("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
-	$("#play-menu-btn").hide();
+	// $("#play-menu-btn").hide();
 	$("#logout-menu-btn").hide();
   $("#preference-section").hide();
   $("#play-section").hide();
   $("#player-history-section").hide();
-
 
   $("#home-menu-btn").click(function(event){
     if (audio != null){
@@ -104,19 +103,19 @@ $(document).ready(function() {
 	});
 
 
-	$("#play-menu-btn").click(function(){
-		// ClearAllIntervals();
-		if (audio != null){
-			audio.pause();
-		}
-		// ResetPreferences();
-		$("#welcome-section-notLoggedIn").hide();
-		$("#play-section").hide();
-		$("#register-section").hide();
-		$("#login-section").hide();
-		// $("#preference-section").show();
-    startGame();
-	});
+	// $("#play-menu-btn").click(function(){
+	// 	// ClearAllIntervals();
+	// 	if (audio != null){
+	// 		audio.pause();
+	// 	}
+	// 	// ResetPreferences();
+	// 	$("#welcome-section-notLoggedIn").hide();
+	// 	$("#play-section").hide();
+	// 	$("#register-section").hide();
+	// 	$("#login-section").hide();
+	// 	// $("#preference-section").show();
+  //   startGame();
+	// });
 })
 
 //**************** SET PREFERENCE *********************/
@@ -184,7 +183,7 @@ function setUserPreferences(){
   $("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
-	$("#play-menu-btn").show();
+	// $("#play-menu-btn").show();
 	$("#logout-menu-btn").show();
   $("#preference-section").hide();
   prefIsSet = true;
@@ -387,7 +386,7 @@ function setLogIn() {
 	$("#play-section").hide();
 	$("#register-section").hide();
 	$("#login-section").hide();
-	$("#play-menu-btn").show();
+	// $("#play-menu-btn").show();
 	$("#logout-menu-btn").show();
 	$("#register-menu-btn").hide();
 	$("#login-menu-btn").hide();
@@ -427,7 +426,7 @@ function setLogOut(){
 	$("#register-section").hide();
 	$("#login-section").hide();
 	$("#preference-section").hide();
-	$("#play-menu-btn").hide();
+	// $("#play-menu-btn").hide();
 	$("#logout-menu-btn").hide();
 	$("#register-menu-btn").show();
 	$("#login-menu-btn").show();
