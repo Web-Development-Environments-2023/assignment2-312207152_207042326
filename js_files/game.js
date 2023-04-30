@@ -467,7 +467,10 @@ var failsCoount;
 var seconds;
 var rocketObj ;
 var rocketObj2;
+var checkShoot=1
 function startGame(){
+  let temp
+  temp = checkShoot;
   let ourGameLoop=0;
   let stopGame=false;
   keys={};
@@ -594,6 +597,9 @@ intervalId = setInterval(() => {
   // Update the variable
   if(enemies!=null){
     if(enemies.length==0){
+      var tupleRes=[gameCounter,playerPoints]
+      playerHistory.push(tupleRes);
+      gameCounter++
       rocketObj=null
       rocketObj2=null
       enemies=null;
@@ -764,12 +770,14 @@ function gameLoop() {
       ctx.drawImage(enemy.image, enemy.x  , enemy.y , enemy.width, enemy.height);
     });
   }
+  if(checkShoot<=temp){
   if(rocketObj!=null && ourGameLoop==0){
     shootRocket(rocketObj);
   }
   if(rocketObj!=null&& ourGameLoop==0){
     var timer2= setTimeout( shootRocket2(rocketObj2), 2000);
   }
+}
   // shootRocket(rocketObj2);
   
  
@@ -912,7 +920,7 @@ if (rocketObj!=null){
     rocketObj.y > player.y - player.height / 5 &&
     rocketObj.y + (rocketObj.height/2) > player.y - player.height / 2)))
     {
-    console.log("The fire cachted the player");
+    console.log("The fire cachted the player" );
     smallCo=0;
     // console.log("this is smallco:"+smallCo)
     // console.log(rocketObj.x);
@@ -921,6 +929,7 @@ if (rocketObj!=null){
     player.x=0
     // rocketObj.x=0
     failsCoount++;
+    console.log("CountOfFails is ="+ failsCoount);
     // var rocketObj = new rocketo();
     if(failsCoount>2){
         clearTimeout(timer);
@@ -966,7 +975,9 @@ if (rocketObj2!=null){
 }
 
 //-------------------------------------------
+if(checkShoot<=temp){
   requestAnimationFrame(gameLoop);
+}
 }
 
 // Handle keyboard input
@@ -1073,6 +1084,7 @@ if (rocketObj2!=null){
   }
   restartButton.addEventListener('click', function() {
   // ourGameLoop=1;
+    checkShoot++;
     enemies=null
     seconds=null
     failsCoount=null
