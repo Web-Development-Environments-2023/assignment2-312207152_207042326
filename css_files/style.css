@@ -238,7 +238,7 @@ h2 {
   font-family: cursive ;
 }
 #play-section> #game-canvas {
-  background-image:url(/s9.png);
+  background-image:url("/media/canvas_backround.png");
   background-color: black;
   width: 800px;
   height: 600px;
@@ -248,7 +248,7 @@ h2 {
 
 .wrapper {
   min-height: 100%;
-  padding-bottom: 10vw; /* adjust as necessary */
+  padding-bottom: 10vw;
   box-sizing: border-box;
 } 
 

@@ -1,5 +1,6 @@
 var shoot_key = null;
-var users = [{username: 'n', password: 'n', firstname:'n', lastname: 'n', email: 'nn@gmail.com', birthdate: '01/01/1996'},{username: 'p', password: 'testuser'}];
+var users = [{username: 'p', password: 'testuser'}];
+// {username: 'n', password: 'n', firstname:'n', lastname: 'n', email: 'nn@gmail.com', birthdate: '01/01/1996'},
 let loggedInUser = null;
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -9,7 +10,7 @@ var limitTime = 120;
 var audio = document.getElementById("startMusic");
 var playerHistory = [];
 var gameCounter = 1;
-var playerColor = 'player12.png'; //defualt player
+var playerColor = 'media/player_black.png'; //defualt player
 var intervalId;
 var intervalId2;
 var intervalId3;
@@ -19,7 +20,6 @@ $(document).ready(function() {
 	$("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
-	// $("#play-menu-btn").hide();
 	$("#logout-menu-btn").hide();
   $("#preference-section").hide();
   $("#play-section").hide();
@@ -81,21 +81,15 @@ $(document).ready(function() {
 		if (audio != null){
 			audio.pause();
 		}
-		// if (loggedInUser != null){
-		// 	$("#welcome-login-btn").hide();
-		// 	$("#welcome-registration-btn").hide();
-		// }
 		$("#welcome-section-notLoggedIn").hide();
 		$("#play-section").hide();
 		$("#register-section").hide();
 		$("#login-section").show();
 		$("#preference-section").hide();
     $("#player-history-section").hide();
-
 	});
 
 	$("#welcome-registration-btn").click(function(){
-		// ClearAllIntervals();
 		if (audio != null){
 			audio.pause();
 		}
@@ -107,25 +101,10 @@ $(document).ready(function() {
     $("#player-history-section").hide();
 	});
 
-
-	// $("#play-menu-btn").click(function(){
-	// 	// ClearAllIntervals();
-	// 	if (audio != null){
-	// 		audio.pause();
-	// 	}
-	// 	// ResetPreferences();
-	// 	$("#welcome-section-notLoggedIn").hide();
-	// 	$("#play-section").hide();
-	// 	$("#register-section").hide();
-	// 	$("#login-section").hide();
-	// 	// $("#preference-section").show();
-  //   startGame();
-	// });
 })
 
 //**************** SET PREFERENCE *********************/
 function setShootKey(event){
-	// let key_shot = document.getElementById("key-board-input").value;
   shoot_key = event.keyCode;
   if (event.keyCode=='32'){
     alert("The choosen key is SPACE");
@@ -160,13 +139,13 @@ $('.color-btn').click(function() {
 
 function setBlackPlayer(event){
   event.preventDefault()
-  playerColor = 'player12.png';
+  playerColor = 'media/player_black.png';
   console.log(" BLACK PLAYER IS CHOSSEN");
 }
 
 $("#bluePlayer").click(function(event){
   event.preventDefault()
-  playerColor = 'player_blue.png';
+  playerColor = 'media/player_blue.png';
   console.log(" BLUE PLAYER IS CHOSSEN");
 });
 
@@ -188,7 +167,6 @@ function setUserPreferences(){
   $("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
-	// $("#play-menu-btn").show();
 	$("#logout-menu-btn").show();
   $("#preference-section").hide();
   prefIsSet = true;
@@ -309,12 +287,7 @@ $(document).ready(function () {
 				required: "Please choose your birth date"
 			}
 		},
-
   });
-		// submitHandler: function(){
-		// 	registrationUser();
-		// 	alert(users.length);
-		// }
 });
 
 function registrationUser(){
@@ -391,17 +364,15 @@ function setLogIn() {
 	$("#play-section").hide();
 	$("#register-section").hide();
 	$("#login-section").hide();
-	// $("#play-menu-btn").show();
 	$("#logout-menu-btn").show();
 	$("#register-menu-btn").hide();
 	$("#login-menu-btn").hide();
 }
 
 function logout(){
-	// ClearAllIntervals();
 	if (audio != null){
 		audio.pause();
-    console.log("pauseeeee audiooooooooooooooo");
+    console.log("pauseeeee audio");
 	}
   if (prefIsSet){
     breakGame();
@@ -431,7 +402,6 @@ function setLogOut(){
 	$("#register-section").hide();
 	$("#login-section").hide();
 	$("#preference-section").hide();
-	// $("#play-menu-btn").hide();
 	$("#logout-menu-btn").hide();
 	$("#register-menu-btn").show();
 	$("#login-menu-btn").show();
@@ -493,8 +463,6 @@ $(document).keydown(function(e) {
 var keys={};
 const restartButton = document.querySelector('#restart-button');
 var intervalId;
-// var intervalId2;
-
 var failsCoount;
 var seconds;
 var rocketObj ;
@@ -611,7 +579,7 @@ function startGame(){
       this.height=10;
       this.speed=10;
       this.image=new Image();
-      this.image.src='player11.png'
+      this.image.src='media/player11.png'
     }
   }
 
@@ -621,38 +589,33 @@ intervalId = setInterval(() => {
   // Update the variable
   enemySpeed+=0.5;
 }, 5000); // Run every 5 seconds (5000 milliseconds)
+
  intervalId2 = setInterval(() => {
   // Update the variable
   if(enemies!=null){
-  if(enemies.length==0)
-  {
-    rocketObj=null
-    rocketObj2=null
-    enemies=null;
-  
-  seconds=null
-  failsCoount=0
-  rocketObj=null
-  rocketObj2=null
-  clearInterval(intervalId)
-  clearInterval(intervalId2)
-  clearTimeout(timer)
-  clearInterval(intervalId3)
-alert("Champion!");
-// startGame();
-
-
-
-}
+    if(enemies.length==0){
+      rocketObj=null
+      rocketObj2=null
+      enemies=null;
+      seconds=null
+      failsCoount=0
+      rocketObj=null
+      rocketObj2=null
+      clearInterval(intervalId)
+      clearInterval(intervalId2)
+      clearTimeout(timer)
+      clearInterval(intervalId3)
+      alert("Champion!");
+      // startGame();
+    }
   }
-
-
 }, 1000);
 
 // To stop the interval after a certain amount of time (e.g. 30 seconds)
 setTimeout(() => {
   clearInterval(intervalId);
-}, 20000); // Stop after 20 seconds 
+}, 20000); // Stop after 20 seconds
+
 // Player properties
 const player = {
   x: 0,
@@ -663,9 +626,7 @@ const player = {
   image: new Image(),
 };
 player.image.src = playerColor;
-player.image.onload = () => {
-  gameLoop();
-};
+player.image.onload = () => { gameLoop();};
 
 const rocket = {
   x: 0,
@@ -685,41 +646,20 @@ const rocket2 = {
   speed: 10,
   image: new Image(),
 };
-rocket.image.src = 'shootRocket.png';
-rocket2.image.src = 'shootRocket.png';
-
+rocket.image.src = 'media/shootRocket.png';
+rocket2.image.src = 'media/shootRocket.png';
 
 // Enemies properties
 var enemies = [];
 var booli=false
 const enemyImage = new Image();
-enemyImage.src = 'enemy11.png';
+enemyImage.src = 'media/enemy11.png';
 const enemyWidth = 30;
 const enemyHeight = 20;
 var enemySpeed = 2;
 
-
-// function createRockets() {
-  
-//   for (let i = 0; i < 20; i++) {
-//     const row = Math.floor(i / 5);
-//     const col = i % 5;
-//     rockets.push({
-//       x:0,
-//       y: 0,
-//       width: rocket.width,
-//       height: rocket.height,
-//       image: rocket.image,
-//       speed: rocket.speed,
-//     });
-//   }
-// }
-
-
-
 // Create enemies
 function createEnemies() {
-  
   for (var i = 0; i < 20; i++) {
     const enemyImageChanged = new Image();
     const row = Math.floor(i / 5);
@@ -727,23 +667,23 @@ function createEnemies() {
     console.log("The row is ="+ row)
     if(row==0){
       console.log("choose first line image");
-      enemyImageChanged.src='firstline.png';
+      enemyImageChanged.src='media/firstline.png';
     }
     if (row ==1)
     {
-      enemyImageChanged.src='e23.png';
+      enemyImageChanged.src='media/e23.png';
     }
     if (row ==2)
     {
-      enemyImageChanged.src='e3.png';
+      enemyImageChanged.src='media/e3.png';
     }
     if (row ==3)
     {
-      enemyImageChanged.src='e44.png';
+      enemyImageChanged.src='media/e44.png';
     }
     if (row ==4)
     {
-      enemyImageChanged.src='e55.png';
+      enemyImageChanged.src='media/e55.png';
     }
     enemies.push({
       x:(col * enemyWidth + enemyWidth / 2),
@@ -762,70 +702,45 @@ var smallCo2=0
 rocketObj = new rocketo();
 rocketObj2 = new rocketo();
 
-
 function shootRocket(rocketob){
   // let rocketObj = new rocketo();
   // smallCo=0;
-  if(enemies!=null)
-  {
-var randomNumber1 = Math.floor(Math.random() * enemies.length);  
-}
-enemies.forEach((enemy) => {
-  
-  if(smallCo==randomNumber1)
-  {
-    // console.log("enemies Leng is"+ enemies.length);
-    // console.log("The random number is"+ randomNumber1);
-    if(rocketob!=null)
-    {
-    rocketob.x=enemy.x
-    rocketob.y=enemy.y
+  if(enemies!=null){
+    var randomNumber1 = Math.floor(Math.random() * enemies.length);  
   }
-    // return 0;
-    
-
-  }
-  smallCo++;
-  
-  
-});
-
-
-
-ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
-rocketob.y+=0.5 
-    
+  enemies.forEach((enemy) => {
+    if(smallCo==randomNumber1){
+      // console.log("enemies Leng is"+ enemies.length);
+      // console.log("The random number is"+ randomNumber1);
+      if(rocketob!=null){
+        rocketob.x=enemy.x
+        rocketob.y=enemy.y
+      }
+    }
+    smallCo++;
+  });
+  ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
+  rocketob.y+=0.5    
 }
 
 function shootRocket2(rocketob){
   // let rocketObj = new rocketo();
   // smallCo=0;
-var randomNumber2 = Math.floor(Math.random() * enemies.length);  
-enemies.forEach((enemy) => {
-  
-  if(smallCo2==randomNumber2)
-  {
-    // console.log("enemies Leng is"+ enemies.length);
-    // console.log("The random number is"+ randomNumber1);
-    if(rocketob!=null)
-    {
-    rocketob.x=enemy.x
-    rocketob.y=enemy.y
-  }
-    // return 0;
-    
+  var randomNumber2 = Math.floor(Math.random() * enemies.length); 
 
-  }
-  smallCo2++;
-  
-  
-});
-
-
-
-ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
-rocketob.y+=0.5 
-    
+  enemies.forEach((enemy) => {
+    if(smallCo2==randomNumber2){
+      // console.log("enemies Leng is"+ enemies.length);
+      // console.log("The random number is"+ randomNumber1);
+      if(rocketob!=null){
+        rocketob.x=enemy.x
+        rocketob.y=enemy.y
+      }
+    }
+    smallCo2++;
+  });
+  ctx.drawImage(rocketob.image,rocketob.x ,rocketob.y, rocketob.width, rocketob.height);  
+  rocketob.y+=0.5    
 }
 
 
@@ -835,8 +750,7 @@ rocket.x=player.x
 var countermy=0
 
 function gameLoop() {
-  
-     
+    
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -854,8 +768,7 @@ function gameLoop() {
     shootRocket(rocketObj);
   }
   if(rocketObj!=null&& ourGameLoop==0){
-  var timer2= setTimeout( shootRocket2(rocketObj2), 2000);
-   
+    var timer2= setTimeout( shootRocket2(rocketObj2), 2000);
   }
   // shootRocket(rocketObj2);
   
@@ -880,9 +793,7 @@ function gameLoop() {
   var lPos=10000
   if(enemies!=null){
     enemies.forEach((enemy) => {
-      
       // console.log(indexof(enemy))
-      
       if(enemy.x>xPos)
       {
         xPos=enemy.x
@@ -891,7 +802,6 @@ function gameLoop() {
       {
         lPos=enemy.x
       }
-      
     });
   }
 
@@ -937,9 +847,6 @@ function gameLoop() {
     rocket.y += (player.speed/2);
   }
 
-  
-   
-  
 
   // Check for collision between player and enemies
   if(rocketObj!=null){
@@ -962,10 +869,9 @@ function gameLoop() {
       // shootRocket(rocketObj)
     }
   }
+
   if(rocketObj2!=null){
-    if(rocketObj2.y==canvas.height )
-    
-    {
+    if(rocketObj2.y==canvas.height ){
       smallCo2=0; 
     }
   }
@@ -998,6 +904,7 @@ if (enemies!=null){
     }
   });
 }
+
 if (rocketObj!=null){
   if (
     ( (rocketObj.x - rocketObj.width < player.x + player.width / 2 &&
@@ -1021,7 +928,6 @@ if (rocketObj!=null){
         // alert("you can do better");
         endGame(1);
     }
-
     document.getElementById("pointsFails-display").textContent = "Number Of Fails: " + failsCoount;
   }
 }
@@ -1059,7 +965,6 @@ if (rocketObj2!=null){
   }
 }
 
-
 //-------------------------------------------
   requestAnimationFrame(gameLoop);
 }
@@ -1095,6 +1000,7 @@ if (rocketObj2!=null){
 
 // document.addEventListener('keydown', launchRocketOnSpace);
   createEnemies();
+
   function endGame(x){
     if(x==1){
       var tupleRes=[gameCounter,playerPoints]
@@ -1107,51 +1013,42 @@ if (rocketObj2!=null){
       rocketObj=null
       rocketObj2=null
       enemies=null;
-      
-    seconds=null
-    failsCoount=0
-    rocketObj=null
-    rocketObj2=null
-    clearInterval(intervalId)
-    clearInterval(intervalId2)
-    clearTimeout(timer)
-    clearInterval(intervalId3)
-    alert("You Lost!");
+      seconds=null
+      failsCoount=0
+      rocketObj=null
+      rocketObj2=null
+      clearInterval(intervalId)
+      clearInterval(intervalId2)
+      clearTimeout(timer)
+      clearInterval(intervalId3)
+      alert("You Lost!");
       // startGame();
-      
       // clearTimeout(timer);
-    
-     
       // clearTimeout(timer);
         // startGame();
     }
     
     if(x==2){
-      
       dic = {game_num:gameCounter.toString(), score:playerPoints.toString()};
       playerHistory.push(dic);
-        
       // playerHistory.push(playerPoints);
       console.log("Results are" +playerHistory)
       enemies=null
-    seconds=null
-    failsCoount=0
-    rocketObj=null
-    rocketObj2=null
-    clearInterval(intervalId)
-    clearInterval(intervalId2)
-    clearTimeout(timer)
-    clearInterval(intervalId3)
+      seconds=null
+      failsCoount=0
+      rocketObj=null
+      rocketObj2=null
+      clearInterval(intervalId)
+      clearInterval(intervalId2)
+      clearTimeout(timer)
+      clearInterval(intervalId3)
       alert("You Win!");
       // startGame();
     
       if(x==3){
-        
-            alert("You can do better!");
-            
-            // clearTimeout(timer);
-        
-            // alert("You can do better");
+        alert("You can do better!");
+        // clearTimeout(timer);
+        // alert("You can do better");
       }
         // return;
         // // var rocketObj = new rocketo();
@@ -1160,6 +1057,7 @@ if (rocketObj2!=null){
         // startGame();
     }
   }
+
   function breakGame(){
     rocketObj=null
     rocketObj2=null
@@ -1189,7 +1087,6 @@ if (rocketObj2!=null){
     clearInterval(intervalId3)
     // startGame().breakGame();
     startGame();
-  
   });
 }
 
