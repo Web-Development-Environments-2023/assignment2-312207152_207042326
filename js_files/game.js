@@ -2,8 +2,8 @@ var shoot_key = null;
 var users = [{username: 'p', password: 'testuser'}];
 // {username: 'n', password: 'n', firstname:'n', lastname: 'n', email: 'nn@gmail.com', birthdate: '01/01/1996'},
 let loggedInUser = null;
-const canvas = document.getElementById('game-canvas');
-const ctx = canvas.getContext('2d');
+var canvas;
+var ctx;
 const table = document.getElementById('myTable');
 table.setAttribute("border", "2");
 var limitTime = 120;
@@ -17,6 +17,11 @@ var intervalId3;
 var prefIsSet = false;
 
 $(document).ready(function() {
+  canvas = document.getElementById('game-canvas');
+  ctx = canvas.getContext('2d');
+});
+
+  $(document).ready(function() {
 	$("#register-section").hide();
 	$("#login-section").hide();
 	$("#about").hide();
