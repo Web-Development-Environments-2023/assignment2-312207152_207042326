@@ -1061,11 +1061,7 @@ if(checkShoot<=temp){
         // clearTimeout(timer);
         // alert("You can do better");
       }
-        // return;
-        // // var rocketObj = new rocketo();
-        // ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // enemies=[];
-        // startGame();
+  
     }
   }
 
